@@ -1,4 +1,4 @@
-<p align="center">Fuzzy Logic / Logika Fuzzy with Laravel</p>
+<h1 align="center">Fuzzy Logic / Logika Fuzzy with Laravel</h1>
 
 <!-- <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
