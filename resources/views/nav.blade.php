@@ -14,7 +14,7 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Analisa Fuzzy</a>
+                    <a class="nav-link" href="/analisa/create">Analisa Fuzzy</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">List Data</a>
