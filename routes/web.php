@@ -20,5 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/analisa/create', 'AnalysisController@create');
+Route::get('/analisa', 'AnalysisController@analisa');
+Route::post('/analisa', 'AnalysisController@store');
 
 // Route::resource('analisa', 'AnalysisController');
