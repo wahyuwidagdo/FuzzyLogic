@@ -18,12 +18,12 @@
 
             <div class="content">
 
-                <div class="container">
+                <div class="container pb-5">
                     <img src="img/jumbotron/jumbotron.jpg" width="1000" height="400" alt="">
                 </div>
 
                 <div class="title m-b-md">
-                    Fuzzy Logic
+                    <h1>Analisa Fuzzy Logic Untuk Menentukan Tingkat Kepuasan Pengunjung dan Member DILo Padang Dengan Metode Tsukamoto</h1>
                 </div>
 
                 <div class="links">
