@@ -15,15 +15,15 @@ class CreateInferensisTable extends Migration
     {
         Schema::create('inferensis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('a-predikat1');
-            $table->integer('a-predikat2');
-            $table->integer('a-predikat3');
-            $table->integer('a-predikat4');
-            $table->integer('a-predikat5');
-            $table->integer('a-predikat6');
-            $table->integer('a-predikat7');
-            $table->integer('a-predikat8');
-            $table->integer('a-predikat9');
+            $table->integer('a_predikat1');
+            $table->integer('a_predikat2');
+            $table->integer('a_predikat3');
+            $table->integer('a_predikat4');
+            $table->integer('a_predikat5');
+            $table->integer('a_predikat6');
+            $table->integer('a_predikat7');
+            $table->integer('a_predikat8');
+            $table->integer('a_predikat9');
             $table->timestamps();
         });
     }

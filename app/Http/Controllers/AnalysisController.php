@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataFuzzy;
+use App\Fuzzyfikasi;
+use App\Inferensi;
+use App\Defuzzyfikasi;
 
 class AnalysisController extends Controller
 {
@@ -15,26 +18,30 @@ class AnalysisController extends Controller
 
     public function create()
     {
-        $analisa = new DataFuzzy();
+        $data_fuzzy = new DataFuzzy();
         
-        return view('analisa_fuzzy.create', compact('analisa'));
+        return view('analisa_fuzzy.create', compact('data_fuzzy'));
     }
 
-    public function store()
+    public function store(DataFuzzy $data_fuzzy)
     {
-        DataFuzzy::create($this->validateRequest());
+        $data_fuzzy = DataFuzzy::create($this->validateRequest());
 
-        return redirect('analisa');
+        return redirect('analisa/' . $data_fuzzy->id);
     }
 
-    public function analisa()
+    public function analisa(DataFuzzy $data_fuzzy)
     {
-        return view('analisa_fuzzy.analisa');
+        $data_fuzzy = DataFuzzy::find($data_fuzzy->id);
+        // $data_fuzzy = DataFuzzy::all();
+
+        return view('analisa_fuzzy.analisa', compact('data_fuzzy'));
     }
 
     public function proses()
     {
-        $data_fuzzies = DataFuzzy::all();
+        // $data_fuzzies = DataFuzzy::all();
+        $data_fuzzy = DataFuzzy::find($data_fuzzy->id);
 
         $fasilitas_kn = $data_fuzzies->fasilitas_kn;
         $fasilitas_cn = $data_fuzzies->fasilitas_cn;
@@ -118,6 +125,16 @@ class AnalysisController extends Controller
         $z9 = 6+(3*$a_predikat9);
 
         $z_hasil = (($a_predikat1*$z1)+($a_predikat2*$z2)+($a_predikat3*$z3)+($a_predikat4*$z4)+($a_predikat5*$z5)+($a_predikat6*$z6)+($a_predikat7*$z7)+($a_predikat8*$z8)+($a_predikat9*$z9))/($z1+$z2+$z3+$z4+$z5+$z6+$z7+$z8+$z9);
+
+        $fuzzyfikasi = new Fuzzyfikasi();
+        $fuzzyfikasi->kurang_nyaman = $request->kurang_nyaman;
+        $fuzzyfikasi->cukup_nyaman = $request->cukup_nyaman;
+        $fuzzyfikasi->sangat_nyaman = $request->sangat_nyaman;
+        $fuzzyfikasi->kurang_baik = $request->kurang_baik;
+        $fuzzyfikasi->cukup_baik = $request->cukup_baik;
+        $fuzzyfikasi->sangat_baik = $request->sangat_baik;
+
+        $fuzzyfiaksi->save();
 
     }
 

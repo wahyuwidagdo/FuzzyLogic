@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-12">
-        <form action="/analisa" method="POST">
+        <form action="/analisa/{{ $data_fuzzy->id }}" method="POST">
             <div class="form-group">
                 <label for="fasilitas_kn">Fasilitas Kurang Nyaman</label>
                 <input type="text" name="fasilitas_kn" value="{{ old('fasilitas') }}" class="form-control">
