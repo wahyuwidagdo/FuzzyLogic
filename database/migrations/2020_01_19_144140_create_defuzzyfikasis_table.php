@@ -15,16 +15,16 @@ class CreateDefuzzyfikasisTable extends Migration
     {
         Schema::create('defuzzyfikasis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('z1');
-            $table->integer('z2');
-            $table->integer('z3');
-            $table->integer('z4');
-            $table->integer('z5');
-            $table->integer('z6');
-            $table->integer('z7');
-            $table->integer('z8');
-            $table->integer('z9');
-            $table->integer('z-hasil');
+            $table->double('z1');
+            $table->double('z2');
+            $table->double('z3');
+            $table->double('z4');
+            $table->double('z5');
+            $table->double('z6');
+            $table->double('z7');
+            $table->double('z8');
+            $table->double('z9');
+            $table->double('z-hasil');
             $table->timestamps();
         });
     }

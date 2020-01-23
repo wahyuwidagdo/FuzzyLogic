@@ -15,12 +15,12 @@ class CreateDataFuzziesTable extends Migration
     {
         Schema::create('data_fuzzies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('fasilitas_kn');
-            $table->integer('fasilitas_cn');
-            $table->integer('fasilitas_sn');
-            $table->integer('pelayanan_kb');
-            $table->integer('pelayanan_cb');
-            $table->integer('pelayanan_sb');
+            $table->double('fasilitas_kn');
+            $table->double('fasilitas_cn');
+            $table->double('fasilitas_sn');
+            $table->double('pelayanan_kb');
+            $table->double('pelayanan_cb');
+            $table->double('pelayanan_sb');
             $table->timestamps();
         });
     }

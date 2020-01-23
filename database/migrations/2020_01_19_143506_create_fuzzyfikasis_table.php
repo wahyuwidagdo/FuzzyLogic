@@ -15,12 +15,12 @@ class CreateFuzzyfikasisTable extends Migration
     {
         Schema::create('fuzzyfikasis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('kurang_nyaman');
-            $table->integer('cukup_nyaman');
-            $table->integer('sangat_nyaman');
-            $table->integer('kurang_baik');
-            $table->integer('cukup_baik');
-            $table->integer('sangat_baik');
+            $table->double('kurang_nyaman');
+            $table->double('cukup_nyaman');
+            $table->double('sangat_nyaman');
+            $table->double('kurang_baik');
+            $table->double('cukup_baik');
+            $table->double('sangat_baik');
             $table->timestamps();
         });
     }
