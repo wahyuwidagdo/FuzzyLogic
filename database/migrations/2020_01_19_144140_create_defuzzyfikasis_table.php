@@ -24,7 +24,7 @@ class CreateDefuzzyfikasisTable extends Migration
             $table->double('z7');
             $table->double('z8');
             $table->double('z9');
-            $table->double('z-hasil');
+            $table->double('z_hasil');
             $table->timestamps();
         });
     }

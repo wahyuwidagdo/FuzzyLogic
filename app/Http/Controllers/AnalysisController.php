@@ -30,7 +30,7 @@ class AnalysisController extends Controller
         return redirect('analisa/' . $data_fuzzy->id);
     }
 
-    public function analisa(DataFuzzy $data_fuzzy, $request)
+    public function analisa(DataFuzzy $data_fuzzy)
     {
         $data_fuzzy = DataFuzzy::find($data_fuzzy->id);
         // $data_fuzzy = DataFuzzy::all();
@@ -119,15 +119,40 @@ class AnalysisController extends Controller
         $z_hasil = (($a_predikat1*$z1)+($a_predikat2*$z2)+($a_predikat3*$z3)+($a_predikat4*$z4)+($a_predikat5*$z5)+($a_predikat6*$z6)+($a_predikat7*$z7)+($a_predikat8*$z8)+($a_predikat9*$z9))/($z1+$z2+$z3+$z4+$z5+$z6+$z7+$z8+$z9);
 
         $fuzzyfikasi = new Fuzzyfikasi();
-        $fuzzyfikasi->kurang_nyaman = $request->kurang_nyaman;
-        $fuzzyfikasi->cukup_nyaman = $request->cukup_nyaman;
-        $fuzzyfikasi->sangat_nyaman = $request->sangat_nyaman;
-        $fuzzyfikasi->kurang_baik = $request->kurang_baik;
-        $fuzzyfikasi->cukup_baik = $request->cukup_baik;
-        $fuzzyfikasi->sangat_baik = $request->sangat_baik;
+        $fuzzyfikasi->kurang_nyaman = $kurang_nyaman;
+        $fuzzyfikasi->cukup_nyaman = $cukup_nyaman;
+        $fuzzyfikasi->sangat_nyaman = $sangat_nyaman;
+        $fuzzyfikasi->kurang_baik = $kurang_baik;
+        $fuzzyfikasi->cukup_baik = $cukup_baik;
+        $fuzzyfikasi->sangat_baik = $sangat_baik;
         $fuzzyfikasi->save();
 
-        return view('analisa_fuzzy.analisa', compact('data_fuzzy', 'request'));
+        $inferensi = new Inferensi();
+        $inferensi->a_predikat1 = $a_predikat1;
+        $inferensi->a_predikat2 = $a_predikat2;
+        $inferensi->a_predikat3 = $a_predikat3;
+        $inferensi->a_predikat4 = $a_predikat4;
+        $inferensi->a_predikat5 = $a_predikat5;
+        $inferensi->a_predikat6 = $a_predikat6;
+        $inferensi->a_predikat7 = $a_predikat7;
+        $inferensi->a_predikat8 = $a_predikat8;
+        $inferensi->a_predikat9 = $a_predikat9;
+        $inferensi->save();
+
+        $defuzzyfikasi = new Defuzzyfikasi();
+        $defuzzyfikasi->z1 = $z1;
+        $defuzzyfikasi->z2 = $z2;
+        $defuzzyfikasi->z3 = $z3;
+        $defuzzyfikasi->z4 = $z4;
+        $defuzzyfikasi->z5 = $z5;
+        $defuzzyfikasi->z6 = $z6;
+        $defuzzyfikasi->z7 = $z7;
+        $defuzzyfikasi->z8 = $z8;
+        $defuzzyfikasi->z9 = $z9;
+        $defuzzyfikasi->z_hasil = $z_hasil;
+        $defuzzyfikasi->save();
+
+        return view('analisa_fuzzy.analisa', compact('data_fuzzy'));
     }
 
     public function proses()
