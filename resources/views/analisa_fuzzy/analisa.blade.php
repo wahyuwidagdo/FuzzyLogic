@@ -6,7 +6,6 @@
     <table class="table table-bordered">
     <thead class="thead-dark">
     <tr>
-        <th>No</th>
         <th>Fasilitas Kurang Nyaman</th>
         <th>Fasilitas Cukup Nyaman</th>
         <th>Fasilitas Sangat Nyaman</th>
@@ -17,7 +16,6 @@
     </thead>
     <tbody>
     <tr>
-        <th>{{ $data_fuzzy->id }}</th>
         <td>{{ $data_fuzzy->fasilitas_kn }}</td>
         <td>{{ $data_fuzzy->fasilitas_cn }}</td>
         <td>{{ $data_fuzzy->fasilitas_sn }}</td>

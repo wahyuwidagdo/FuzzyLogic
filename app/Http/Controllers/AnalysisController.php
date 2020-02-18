@@ -30,6 +30,11 @@ class AnalysisController extends Controller
         return redirect('analisa/' . $data_fuzzy->id);
     }
 
+    public function show(DataFuzzy $data_fuzzy)
+    {
+        return view('analisa_fuzzy.analisa', compact('data_fuzzy'));
+    }
+
     public function analisa(DataFuzzy $data_fuzzy)
     {
         $data_fuzzy = DataFuzzy::find($data_fuzzy->id);
