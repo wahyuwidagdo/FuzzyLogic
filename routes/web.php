@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/analisa/create', 'AnalysisController@create');
 Route::post('/analisa', 'AnalysisController@store');
 Route::get('/analisa/{data_fuzzy}', 'AnalysisController@show');
-// Route::get('/analisa/{data_fuzzy}', 'AnalysisController@analisa');
+Route::post('/analisa/{data_fuzzy}/hasil', 'AnalysisController@analisa');
 // Route::get('/analisa/{data_fuzzy}/proses', 'AnalysisController@proses');
 
 // Route::resource('analisa', 'AnalysisController');

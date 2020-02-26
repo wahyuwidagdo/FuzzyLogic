@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataFuzzy extends Model
 {
-    protected $guarded = []; 
+    protected $guarded = [];
+    
+    // public function fuzzyfikasi()
+    // {
+    //     return $this->hasOne(Fuzzyfikasi::class);
+    // }
 }

@@ -32,7 +32,10 @@ class AnalysisController extends Controller
 
     public function show(DataFuzzy $data_fuzzy)
     {
-        return view('analisa_fuzzy.analisa', compact('data_fuzzy'));
+        $fuzzyfikasi = new Fuzzyfikasi();
+        $inferensi = new Inferensi();
+        $defuzzyfikasi = new Defuzzyfikasi();
+        return view('analisa_fuzzy.analisa', compact('data_fuzzy', 'fuzzyfikasi', 'inferensi', 'defuzzyfikasi'));
     }
 
     public function analisa(DataFuzzy $data_fuzzy)
@@ -48,29 +51,29 @@ class AnalysisController extends Controller
         $pelayanan_sb = $data_fuzzy->pelayanan_sb;
 
         //fuzzyfikasi
-        $kurang_nyaman = (9-$fasilitas_kn)/(9-0);
+        $kurang_nyaman = ($fasilitas_kn-0)/(9-0);
 
         if($fasilitas_cn<5)
         {
-            $cukup_nyaman = (9-$fasilitas_cn)/(9-5);
+            $cukup_nyaman = ($fasilitas_cn-1)/(5-1);
         }
         if($fasilitas_cn>=5)
         {
-            $cukup_nyaman = ($fasilitas_cn-1)/(5-1);
+            $cukup_nyaman = (9-$fasilitas_cn)/(9-5);
         }
 
         $sangat_nyaman = ($fasilitas_sn-1)/(9-1);
 
 
-        $kurang_baik = (9-$pelayanan_kb)/(9-0);
+        $kurang_baik = ($pelayanan_kb-0)/(9-0);
 
         if($pelayanan_cb<5)
         {
-            $cukup_baik = (9-$pelayanan_cb)/(9-5);
+            $cukup_baik = ($pelayanan_cb-1)/(5-1);
         }
         if($pelayanan_cb>=5)
         {
-            $cukup_baik = ($pelayanan_cb-1)/(5-1);
+            $cukup_baik = (9-$pelayanan_cb)/(9-5);
         }
 
         $sangat_baik = ($pelayanan_sb-1)/(9-1);
@@ -92,36 +95,49 @@ class AnalysisController extends Controller
         $z3 = 4-(3*$a_predikat3);
         if($fasilitas_cn<5)
         {
-            $z4 = 9-(4*$a_predikat4);
+            $z4 = 1+(4*$a_predikat4);
         }
         if($fasilitas_cn>=5)
         {
-            $z4 = 1+(4*$a_predikat4);
+            $z4 = 9-(4*$a_predikat4);
         }
         
         if($fasilitas_cn<5)
         {
-            $z5 = 9-(4*$a_predikat5);
+            $z5 = 1+(4*$a_predikat5);
         }
         if($fasilitas_cn>=5)
         {
-            $z5 = 1+(4*$a_predikat5);
+            $z5 = 9-(4*$a_predikat5);
         }
 
         if($fasilitas_cn<5)
         {
-            $z6 = 9-(4*$a_predikat6);
+            $z6 = 1+(4*$a_predikat6);
         }
         if($fasilitas_cn>=5)
         {
-            $z6 = 1+(4*$a_predikat6);
+            $z6 = 9-(4*$a_predikat6);
         }
 
         $z7 = 6+(3*$a_predikat7);
         $z8 = 6+(3*$a_predikat8);
         $z9 = 6+(3*$a_predikat9);
 
-        $z_hasil = (($a_predikat1*$z1)+($a_predikat2*$z2)+($a_predikat3*$z3)+($a_predikat4*$z4)+($a_predikat5*$z5)+($a_predikat6*$z6)+($a_predikat7*$z7)+($a_predikat8*$z8)+($a_predikat9*$z9))/($z1+$z2+$z3+$z4+$z5+$z6+$z7+$z8+$z9);
+        $z_hasil = (($a_predikat1*$z1)+($a_predikat2*$z2)+($a_predikat3*$z3)+($a_predikat4*$z4)+($a_predikat5*$z5)+($a_predikat6*$z6)+($a_predikat7*$z7)+($a_predikat8*$z8)+($a_predikat9*$z9))/($a_predikat1+$a_predikat2+$a_predikat3+$a_predikat4+$a_predikat5+$a_predikat6+$a_predikat7+$a_predikat8+$a_predikat9);
+
+        if($z_hasil<4)
+        {
+            $keterangan = "Kurang Puas";
+        }
+        if($z_hasil>=6)
+        {
+            $keterangan = "Sangat Puas";
+        }
+        if($z_hasil>=4 && $z_hasil<6)
+        {
+            $keterangan = "Cukup Puas";
+        }
 
         $fuzzyfikasi = new Fuzzyfikasi();
         $fuzzyfikasi->kurang_nyaman = $kurang_nyaman;
@@ -155,9 +171,10 @@ class AnalysisController extends Controller
         $defuzzyfikasi->z8 = $z8;
         $defuzzyfikasi->z9 = $z9;
         $defuzzyfikasi->z_hasil = $z_hasil;
+        $defuzzyfikasi->keterangan = $keterangan;
         $defuzzyfikasi->save();
 
-        return view('analisa_fuzzy.analisa', compact('data_fuzzy'));
+        return view('analisa_fuzzy.hasil', compact('data_fuzzy', 'fuzzyfikasi', 'inferensi', 'defuzzyfikasi'));
     }
 
     public function proses()
