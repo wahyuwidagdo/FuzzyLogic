@@ -15,6 +15,7 @@ class CreateInferensisTable extends Migration
     {
         Schema::create('inferensis', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('data_fuzzy_id');
             $table->double('a_predikat1');
             $table->double('a_predikat2');
             $table->double('a_predikat3');

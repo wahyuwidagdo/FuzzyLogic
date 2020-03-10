@@ -15,6 +15,7 @@ class CreateFuzzyfikasisTable extends Migration
     {
         Schema::create('fuzzyfikasis', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('data_fuzzy_id');
             $table->double('kurang_nyaman');
             $table->double('cukup_nyaman');
             $table->double('sangat_nyaman');

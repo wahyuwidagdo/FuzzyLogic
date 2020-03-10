@@ -15,6 +15,7 @@ class CreateDefuzzyfikasisTable extends Migration
     {
         Schema::create('defuzzyfikasis', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('data_fuzzy_id');
             $table->double('z1');
             $table->double('z2');
             $table->double('z3');

@@ -8,8 +8,8 @@ class Fuzzyfikasi extends Model
 {
     protected $guarded = [];
 
-    // public function data_fuzzy()
-    // {
-    //     return $this->belongsTo(DataFuzzy::class);
-    // }
+    public function data_fuzzy()
+    {
+        return $this->belongsTo(DataFuzzy::class);
+    }
 }
